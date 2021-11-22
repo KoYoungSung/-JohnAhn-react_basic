@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-
+const mongoose = require('mongoose')
+// import { Schema, model } from 'mongoose';
 const useSchema = mongoose.Schema({
   name: {
     type: String,
