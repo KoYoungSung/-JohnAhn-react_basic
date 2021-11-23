@@ -43,13 +43,13 @@ app.post('/api/users/login', (req, res) => {
   User.findOne({ email: req.body.email }, (err, user) => {
     if (!user) {
       return res.json({
-        loginSucess: false,
+        loginSuccess: false,
         message: 'id없음'
       })
     }
     user.comparePassword(req.body.password, (err, isMatch) => {
       if (!isMatch) {
-        return res.json({ loginSucess: false, message: '비밀번호 틀림' })
+        return res.json({ loginSuccess: false, message: '비밀번호 틀림' })
       }
       user.generateToken((err, user) => {
         if (err) {
@@ -57,7 +57,7 @@ app.post('/api/users/login', (req, res) => {
         }
         res.cookie("x_auth", user.token)
           .status(200)
-          .json({ loginSucess: true, userId: user._id })
+          .json({ loginSuccess: true, userId: user._id })
       })
     })
   })
